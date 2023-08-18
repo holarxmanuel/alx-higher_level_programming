@@ -1,12 +1,7 @@
 #!/usr/bin/python3
 
 def roman_to_int(roman_string):
-    """
-    Converts a Roman numeral to an integer.
-
-    :param roman_string: The Roman numeral as a string
-    :return: The corresponding integer value, or 0 if not a valid Roman numeral
-    """
+    """Converts a Roman numeral to an integer."""
     if not isinstance(roman_string, str) or not roman_string:
         return 0
 
@@ -14,7 +9,7 @@ def roman_to_int(roman_string):
         'I': 1, 'V': 5, 'X': 10, 'L': 50,
         'C': 100, 'D': 500, 'M': 1000
     }
-    
+
     total = 0
     prev_value = 0
 
