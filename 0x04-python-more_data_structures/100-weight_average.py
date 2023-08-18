@@ -1,4 +1,14 @@
 #!/usr/bin/python3
 
-def weight_average(my_list=[]):
-    return sum(s * w for s, w in my_list) / sum(w for _, w in my_list) if my_list else 0
+def weighted_average_calculator(tuples_list=[]):
+    if not tuples_list:
+        return 0
+
+    numerator = 0
+    denominator = 0
+
+    for score_weight_tuple in tuples_list:
+        numerator += score_weight_tuple[0] * score_weight_tuple[1]
+        denominator += score_weight_tuple[1]
+
+    return (numerator / denominator)
