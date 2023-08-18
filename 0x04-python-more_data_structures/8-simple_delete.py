@@ -6,5 +6,8 @@ def simple_delete(a_dictionary, key=""):
 
     :param a_dictionary: The input dictionary
     :param key: The key to delete (default is empty string)
+    :return: The updated dictionary
     """
-    a_dictionary.pop(key, None)
+    if key in a_dictionary:
+        del a_dictionary[key]
+    return a_dictionary
