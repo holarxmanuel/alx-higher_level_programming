@@ -1,14 +1,21 @@
 #!/usr/bin/python3
 
-def weighted_average_calculator(tuples_list=[]):
-    if not tuples_list:
+"""
+Calculates the weighted average of integers in the list of tuples.
+
+:param my_list: List of tuples containing integer score and weight
+:return: Weighted average, or 0 if the list is empty
+"""
+
+def weight_average(my_list=[]):
+    if not my_list:
         return 0
 
-    numerator = 0
-    denominator = 0
+    total_score = 0
+    total_weight = 0
 
-    for score_weight_tuple in tuples_list:
-        numerator += score_weight_tuple[0] * score_weight_tuple[1]
-        denominator += score_weight_tuple[1]
+    for score, weight in my_list:
+        total_score += score * weight
+        total_weight += weight
 
-    return (numerator / denominator)
+    return total_score / total_weight
