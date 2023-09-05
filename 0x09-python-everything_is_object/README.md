@@ -1,0 +1,1 @@
+Everything is definitely object
