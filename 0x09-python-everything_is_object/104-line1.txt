@@ -1,1 +1,1 @@
-One int object.
+1
