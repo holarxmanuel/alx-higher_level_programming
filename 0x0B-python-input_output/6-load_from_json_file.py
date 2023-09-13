@@ -5,6 +5,7 @@ Defines a function to load an object from a JSON file.
 
 import json
 
+
 def load_from_json_file(filename):
     """
     Load an object from the specified JSON file.
