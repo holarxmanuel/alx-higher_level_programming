@@ -20,24 +20,43 @@ class Square(Rectangle):
         super().__init__(size, size, x, y, id)
 
     def update(self, *args, **kwargs):
-        """Update the Square instance attributes
+        """Update the attributes of the Square
 
         Args:
-            *args: List of non-keyword arguments.
-            **kwargs: Double pointer to a dictionary with keyworded arguments.
+            *args: List of positional arguments.
+            **kwargs: Dictionary of keyword arguments.
         """
         if args:
             attrs = ["id", "size", "x", "y"]
-            for i, value in enumerate(args):
+            for i, arg in enumerate(args):
                 if i < len(attrs):
-                    setattr(self, attrs[i], value)
+                    setattr(self, attrs[i], arg)
         else:
             for key, value in kwargs.items():
                 if hasattr(self, key):
                     setattr(self, key, value)
 
+    def to_dictionary(self):
+        """Return the dictionary representation of a Square"""
+        return {"id": self.id, "size": self.size, "x": self.x, "y": self.y}
+
+    @property
+    def size(self):
+        """Getter method for size"""
+        return self.width
+
+    @size.setter
+    def size(self, value):
+        """Setter method for size with validation"""
+        if not isinstance(value, int):
+            raise TypeError("width must be an integer")
+        if value <= 0:
+            raise ValueError("width must be > 0")
+        self.width = value
+        self.height = value
+
     def __str__(self):
-        """Override the __str__ method"""
+        """Override the __str__ method """
         return "[Square] ({}) {}/{} - {}".format(
             self.id, self.x, self.y, self.width
         )
