@@ -19,6 +19,23 @@ class Square(Rectangle):
         """
         super().__init__(size, size, x, y, id)
 
+    def update(self, *args, **kwargs):
+        """Update the Square instance attributes
+
+        Args:
+            *args: List of non-keyword arguments.
+            **kwargs: Double pointer to a dictionary with keyworded arguments.
+        """
+        if args:
+            attrs = ["id", "size", "x", "y"]
+            for i, value in enumerate(args):
+                if i < len(attrs):
+                    setattr(self, attrs[i], value)
+        else:
+            for key, value in kwargs.items():
+                if hasattr(self, key):
+                    setattr(self, key, value)
+
     def __str__(self):
         """Override the __str__ method"""
         return "[Square] ({}) {}/{} - {}".format(
