@@ -67,13 +67,10 @@ class Base:
         filename = cls.__name__ + ".csv"
         with open(filename, "w", newline='') as file:
             writer = csv.writer(file)
-            if cls.__name__ == "Rectangle":
-                fieldnames = ["id", "width", "height", "x", "y"]
-            elif cls.__name__ == "Square":
-                fieldnames = ["id", "size", "x", "y"]
+            fieldnames = ["id", "width", "height", "x", "y"] if cls.__name__ == "Rectangle" else ["id", "size", "x", "y"]
             if list_objs is not None:
                 for obj in list_objs:
-                    writer.writerow(getattr(obj, n) for n in fieldnames)
+                    writer.writerow(getattr(obj, name) for name in fieldnames)
 
     @classmethod
     def load_from_file_csv(cls):
