@@ -25,7 +25,7 @@ class Base:
 
     @classmethod
     def save_to_file(cls, list_objs):
-        """ Writes the JSON string representation"""
+        """ Writes the JSON string representation """
         filename = cls.__name__ + ".json"
         list_dict = []
         if list_objs is not None:
@@ -44,9 +44,9 @@ class Base:
     def create(cls, **dictionary):
         """ Create an instance """
         if cls.__name__ == "Rectangle":
-            new = cls(1, 1)
+            new = cls(10, 10)
         else:
-            new = cls(1)
+            new = cls(10)
         new.update(**dictionary)
         return new
 
@@ -63,16 +63,16 @@ class Base:
 
     @classmethod
     def save_to_file_csv(cls, list_objs):
-        """ Serializes list_objs to CSV file """
+        """ Writes the JSON string representation """
         filename = cls.__name__ + ".csv"
         with open(filename, "w", newline='') as file:
             writer = csv.writer(file)
-            fieldnames = (["id", "width", "height", "x", "y"]
-                          if cls.__name__ == "Rectangle"
-                          else ["id", "size", "x", "y"])
+            if cls.__name__ == "Rectangle":
+                fieldnames = ["id", "width", "height", "x", "y"]
+            else:
+                fieldnames = ["id", "size", "x", "y"]
             if list_objs is not None:
-                for obj in list_objs:
-                    writer.writerow(getattr(obj, name) for name in fieldnames)
+                writer.writerow(getattr(obj, name) for name in fieldnames)
 
     @classmethod
     def load_from_file_csv(cls):
