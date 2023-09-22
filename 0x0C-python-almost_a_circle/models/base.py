@@ -18,14 +18,14 @@ class Base:
 
     @staticmethod
     def to_json_string(list_dictionaries):
-        """ Returns the JSON string representation of list_dictionaries """
+        """ Returns the JSON string representation """
         if list_dictionaries is None or len(list_dictionaries) == 0:
             return "[]"
         return json.dumps(list_dictionaries)
 
     @classmethod
     def save_to_file(cls, list_objs):
-        """ Writes the JSON string representation of list_objs to a file """
+        """ Writes the JSON string representation"""
         filename = cls.__name__ + ".json"
         list_dict = []
         if list_objs is not None:
@@ -35,20 +35,20 @@ class Base:
 
     @staticmethod
     def from_json_string(json_string):
-        """ Returns the list of the JSON string representation json_string """
+        """ Returns the list of the JSON string """
         if json_string is None or json_string == "":
             return []
         return json.loads(json_string)
 
     @classmethod
     def create(cls, **dictionary):
-        """ Returns an instance with all attributes already set """
+        """ Create an instance """
         if cls.__name__ == "Rectangle":
-            dummy = cls(1, 1)
-        elif cls.__name__ == "Square":
-            dummy = cls(1)
-        dummy.update(**dictionary)
-        return dummy
+            new = cls(1, 1)
+        else:
+            new = cls(1)
+        new.update(**dictionary)
+        return new
 
     @classmethod
     def load_from_file(cls):
@@ -67,7 +67,9 @@ class Base:
         filename = cls.__name__ + ".csv"
         with open(filename, "w", newline='') as file:
             writer = csv.writer(file)
-            fieldnames = ["id", "width", "height", "x", "y"] if cls.__name__ == "Rectangle" else ["id", "size", "x", "y"]
+            fieldnames = (["id", "width", "height", "x", "y"]
+                          if cls.__name__ == "Rectangle"
+                          else ["id", "size", "x", "y"])
             if list_objs is not None:
                 for obj in list_objs:
                     writer.writerow(getattr(obj, name) for name in fieldnames)
