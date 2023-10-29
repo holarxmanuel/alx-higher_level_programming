@@ -1,0 +1,3 @@
+0-add_integer
+    tests/0-add_integer.txt
+    5
