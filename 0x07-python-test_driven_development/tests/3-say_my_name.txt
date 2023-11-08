@@ -1,0 +1,3 @@
+3-say_my_name
+    tests/3-say_my_name.txt
+    5
